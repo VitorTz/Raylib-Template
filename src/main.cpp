@@ -1,15 +1,18 @@
 #include <raylib.h>
+#include "../include/constants.h"
+#include "../include/scene.h"
 
 
 int main(int argc, char const *argv[]) {
-    InitWindow(800, 800, "Touhou");
-    SetTargetFPS(60);
+    SetConfigFlags(FLAG_VSYNC_HINT);
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
+    
+    SceneManager sceneManager;
 
     while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(BLACK);
-        EndDrawing();
+        sceneManager.update();        
+        sceneManager.draw();        
     }
+
     CloseWindow();
-    return 0;
 }
