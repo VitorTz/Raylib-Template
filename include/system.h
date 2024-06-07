@@ -23,20 +23,3 @@ class TransformSystem : public System {
 
 };
 
-
-class SpriteSystem : public System {
-
-    public:
-        void update(float dt) override;
-        void draw() override;
-
-};
-
-
-class CircleSystem : public System {
-
-    public:
-        void update(float dt) override;
-        void draw() override;
-
-};

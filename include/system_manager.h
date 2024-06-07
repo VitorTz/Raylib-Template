@@ -21,10 +21,8 @@ class SystemManager {
         }
     
     public:
-        SystemManager() {   
-            register_system<SpriteSystem>();
-            register_system<TransformSystem>();
-            register_system<CircleSystem>();
+        SystemManager() {               
+            register_system<TransformSystem>();            
             assert(systemMap.size() == NUM_COMPONENTS);
         }
 

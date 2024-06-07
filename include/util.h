@@ -11,5 +11,7 @@ int randint(int start, int end);
 
 float randFloat(float min, float max);
 
-
 void normalize_vector(Vector2* v);
+
+
+

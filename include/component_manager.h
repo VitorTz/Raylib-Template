@@ -10,6 +10,9 @@ class ComponentManager {
     private:
         std::unordered_map<const char*, IComponentArray*> componentArrayMap;
     
+    public:
+        ComponentArray<transform_t>* transform_array;        
+
     private:
         template<typename T>
         ComponentArray<T>* get_array() {
@@ -27,10 +30,9 @@ class ComponentManager {
     
     public:
         // TODO: Register all components here
-        ComponentManager() {
-            register_component<sprite_t>();
-            register_component<transform_t>();
-            register_component<circle_t>();
+        ComponentManager() {            
+            register_component<transform_t>();            
+            transform_array = get_array<transform_t>();
             assert(componentArrayMap.size() == NUM_COMPONENTS);
         }
 

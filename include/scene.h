@@ -1,9 +1,5 @@
 #pragma once
-#include <raylib.h>
-#include <iostream>
 #include <memory>
-#include "util.h"
-#include "globals.h"
 
 
 enum SceneId {

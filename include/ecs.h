@@ -34,6 +34,10 @@ class ECS {
             entitiesToDestroy.insert(e);            
         }
 
+        transform_t& get_transform(const Entity e) {
+            return componentManager->transform_array->at(e);
+        }
+
         template<typename T>
         void addComponent(const Entity e, T c) {
             componentManager->insert<T>(e, std::move(c));
@@ -82,6 +86,9 @@ class ECS {
 
         void clear() {
             shouldClearAllEntities = true;            
-        }
+        }        
 
 };
+
+
+inline std::unique_ptr<ECS> gEcs = std::make_unique<ECS>();

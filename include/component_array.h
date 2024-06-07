@@ -32,18 +32,19 @@ class ComponentArray : public IComponentArray {
         }
 
         void erase(const Entity e) override {
-            assert(entityToIndex.find(e) != entityToIndex.end());
-            const std::size_t removeComponentIndex = entityToIndex[e];
-            const std::size_t lastComponentIndex = --mSize;
-            const Entity lastComponentEntity = indexToEntity[lastComponentIndex];
-            
-            arr[removeComponentIndex] = arr[lastComponentIndex];
+            if (entityToIndex.find(e) != entityToIndex.end()) {
+                const std::size_t removeComponentIndex = entityToIndex[e];
+                const std::size_t lastComponentIndex = --mSize;
+                const Entity lastComponentEntity = indexToEntity[lastComponentIndex];
+                
+                arr[removeComponentIndex] = arr[lastComponentIndex];
 
-            indexToEntity[removeComponentIndex] = lastComponentEntity;
-            entityToIndex[lastComponentEntity] = removeComponentIndex;
+                indexToEntity[removeComponentIndex] = lastComponentEntity;
+                entityToIndex[lastComponentEntity] = removeComponentIndex;
 
-            entityToIndex.erase(e);
-            indexToEntity.erase(lastComponentIndex);
+                entityToIndex.erase(e);
+                indexToEntity.erase(lastComponentIndex);
+            }            
         }
         
         void insert(const Entity e, T c) {

@@ -3,7 +3,7 @@
 #include <raymath.h>
 
 
-#define NUM_COMPONENTS 3
+#define NUM_COMPONENTS 1
 
 typedef struct transform {
     Vector2 pos{};
@@ -14,13 +14,3 @@ typedef struct transform {
     float speed = 0.f;
 } transform_t;
 
-
-typedef struct sprite {
-    Texture2D texture;
-} sprite_t;
-
-
-typedef struct circle {
-    float radius;
-    Color color;
-} circle_t;
