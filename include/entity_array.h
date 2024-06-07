@@ -24,5 +24,7 @@ class EntityArray {
         void insert(Entity e);
         void erase(Entity e);
         void clear();
+        std::size_t size() const;
+        bool empty() const;
 
 };

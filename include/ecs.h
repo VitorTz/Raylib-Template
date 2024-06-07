@@ -11,6 +11,8 @@ class ECS {
         std::unique_ptr<ComponentManager> componentManager;
         std::unique_ptr<EntityManager> entityManager;
         std::unique_ptr<SystemManager> systemManager;
+        EntityArray entitiesToDestroy;
+        bool shouldClearAllEntities = false;
     
     public:
         ECS(
@@ -29,9 +31,7 @@ class ECS {
         }
 
         void enity_destroy(const Entity e) {
-            entityManager->entity_destroy(e);
-            systemManager->entity_destroy(e);
-            componentManager->entity_destroy(e);
+            entitiesToDestroy.insert(e);            
         }
 
         template<typename T>
@@ -61,6 +61,19 @@ class ECS {
 
         void update(const float dt) {
             systemManager->update(dt);
+            if (shouldClearAllEntities) {
+                entitiesToDestroy.clear();
+                componentManager->clear();
+                systemManager->clear();
+                entityManager->clear();
+                shouldClearAllEntities = false;
+            }
+            for (const Entity e : entitiesToDestroy) {
+                entityManager->entity_destroy(e);
+                systemManager->entity_destroy(e);
+                componentManager->entity_destroy(e);
+                entitiesToDestroy.clear();
+            }
         }
 
         void draw() {
@@ -68,9 +81,7 @@ class ECS {
         }
 
         void clear() {
-            entityManager->clear();
-            systemManager->clear();
-            componentManager->clear();
+            shouldClearAllEntities = true;            
         }
 
 };

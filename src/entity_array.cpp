@@ -46,3 +46,13 @@ void EntityArray::clear() {
     indexToEntity.clear();
     mSize = 0;
 }
+
+
+std::size_t EntityArray::size() const {
+    return mSize;
+}
+
+
+bool EntityArray::empty() const {
+    return mSize == 0;
+}
