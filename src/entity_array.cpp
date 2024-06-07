@@ -26,18 +26,19 @@ void EntityArray::insert(const Entity e) {
 
 
 void EntityArray::erase(const Entity e) {
-    assert(entityToIndex.find(e) != entityToIndex.end());
-    const std::size_t removedIndex = entityToIndex[e];
-    const std::size_t lastIndex = --mSize;
-    const Entity lastIndexEntity = arr[lastIndex];
+    if (entityToIndex.find(e) != entityToIndex.end()) {
+        const std::size_t removedIndex = entityToIndex[e];
+        const std::size_t lastIndex = --mSize;
+        const Entity lastIndexEntity = arr[lastIndex];
     
-    arr[removedIndex] = lastIndexEntity;
+        arr[removedIndex] = lastIndexEntity;
 
-    entityToIndex[lastIndexEntity] = removedIndex;
-    indexToEntity[removedIndex] = lastIndexEntity;
+        entityToIndex[lastIndexEntity] = removedIndex;
+        indexToEntity[removedIndex] = lastIndexEntity;
     
-    entityToIndex.erase(e);
-    indexToEntity.erase(lastIndex);
+        entityToIndex.erase(e);
+        indexToEntity.erase(lastIndex);
+    }    
 }
 
 
